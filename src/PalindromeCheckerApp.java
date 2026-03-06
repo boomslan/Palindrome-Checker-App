@@ -21,11 +21,32 @@
  *
  * @author Developer
  * @version 1.0.0
+ * MAIN CLASS – UseCase9RecursivePalindrome
+ * ============================================================
+ *
+ * Use Case 9: Recursive Palindrome Checker
+ *
+ * Description:
+ * This class validates a palindrome using recursion.
+ *
+ * Characters are compared from the outer positions
+ * moving inward using recursive calls.
+ *
+ * The recursion stops when:
+ * - ALL characters are matched, or
+ * - A mismatch is found.
+ *
+ * This use case demonstrates divide-and-conquer
+ * logic using method recursion.
+ *
+ * @author Developer
+ * @version 9.0
  */
 public class PalindromeCheckerApp {
 
     /**
      * Application entry point for UC10.
+     * Application entry point for UC9.
      *
      * @param args Command-line arguments
      */
@@ -59,5 +80,37 @@ public class PalindromeCheckerApp {
         }
 
         return true;
+    }
+}
+        String str = "madam";
+
+        boolean result = check(str, 0, str.length() - 1);
+
+        if (result) {
+            System.out.println(str + " is a palindrome");
+        } else {
+            System.out.println(str + " is not a palindrome");
+        }
+    }
+
+    /**
+     * Recursively checks whether a string is palindrome.
+     *
+     * @param s     Input string
+     * @param start Starting index
+     * @param end   Ending index
+     * @return true if palindrome, otherwise false
+     */
+    private static boolean check(String s, int start, int end) {
+
+        if (start >= end) {
+            return true;
+        }
+
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
+        }
+
+        return check(s, start + 1, end - 1);
     }
 }
