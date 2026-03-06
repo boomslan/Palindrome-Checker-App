@@ -1,65 +1,63 @@
 /**
- * MAIN CLASS - UseCase7PalindromeCheckerApp
+ * ============================================================
+ * MAIN CLASS – UseCase10PalindromeCheckerApp
+ * ============================================================
  *
- * Use Case 7: Deque Based Optimized Palindrome Checker
+ * Use Case 10: Normalized Palindrome Validation
  *
  * Description:
- * This class validates a palindrome using a Deque
- * (Double Ended Queue).
+ * This class validates a palindrome after preprocessing
+ * the input string.
  *
- * Characters are inserted into the deque and then
- * compared by removing elements from both ends:
+ * Normalization includes:
+ * - Removing spaces and symbols
+ * - Converting to lowercase
  *
- * - removeFirst()
- * - removeLast()
+ * This ensures the palindrome check is logical rather
+ * than character-format dependent.
  *
- * This avoids reversing the string and provides an
- * efficient front-to-back comparison approach.
- *
- * This use case demonstrates optimal bidirectional
- * traversal using Deque.
+ * Example:
+ * "A man a plan a canal Panama"
  *
  * @author Developer
- * @version 7.0
+ * @version 1.0.0
  */
-
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC7.
+     * Application entry point for UC10.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Deque<Character> deque = new ArrayDeque<>();
+        String input = "A man a plan a canal Panama";
 
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
+        String normalized = normalizeString(input);
 
-        for (char ch : input.toCharArray()) {
-            deque.addLast(ch);
-        }
+        boolean isPalindrome = isPalindrome(normalized);
 
-        boolean isPalindrome = true;
-
-        while (deque.size() > 1) {
-            char first = deque.removeFirst();
-            char last = deque.removeLast();
-
-            if (first != last) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
-            System.out.println("The string is a Palindrome.");
-        } else {
-            System.out.println("The string is NOT a Palindrome.");
-        }
-
-        scanner.close();
+        System.out.println("Original: " + input);
+        System.out.println("Normalized: " + normalized);
+        System.out.println("Is Palindrome: " + isPalindrome);
     }
 
+    public static String normalizeString(String str) {
+        return str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+    }
+
+    public static boolean isPalindrome(String str) {
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
 }
