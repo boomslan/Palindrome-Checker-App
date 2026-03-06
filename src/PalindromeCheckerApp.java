@@ -61,7 +61,7 @@ public class PalindromeCheckerApp {
         if (firstHalf.equals(reversedSecond)) {
             System.out.println("Palindrome");
         } else {
-            System.out.println("Not a Palindrome");
+            System.out.println(" Not a Palindrome");
         }
     }
 }
